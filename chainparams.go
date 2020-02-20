@@ -38,10 +38,10 @@ var bitcoinTestNetParams = bitcoinNetParams{
 	CoinType: keychain.CoinTypeTestnet,
 }
 
-// bitcoinMyNetParams contains parameters of the my network.
-var bitcoinMyNetParams = bitcoinNetParams{
-	Params:   &bitcoinCfg.MyNetParams,
-	rpcPort:  "11454",
+// bitcoinBsafeNetParams contains parameters of the my network.
+var bitcoinBsafeNetParams = bitcoinNetParams{
+	Params:   &bitcoinCfg.BsafeNetParams,
+  rpcPort:  "34822",
 	CoinType: keychain.CoinTypeTestnet,
 }
 
