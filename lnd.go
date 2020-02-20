@@ -185,6 +185,9 @@ func Main(lisCfg ListenerCfg) error {
 
 	case cfg.Bitcoin.RegTest || cfg.Litecoin.RegTest:
 		network = "regtest"
+
+  case cfg.Bitcoin.MyNet || cfg.Litecoin.MyNet:
+		network = "mynet"
 	}
 
 	ltndLog.Infof("Active chain: %v (network=%v)",

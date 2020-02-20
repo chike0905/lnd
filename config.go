@@ -161,6 +161,7 @@ type chainConfig struct {
 
 	MainNet  bool `long:"mainnet" description:"Use the main network"`
 	TestNet3 bool `long:"testnet" description:"Use the test network"`
+	MyNet    bool `long:"mynet" description:"Use the my network"`
 	SimNet   bool `long:"simnet" description:"Use the simulation test network"`
 	RegTest  bool `long:"regtest" description:"Use the regression test network"`
 
@@ -806,12 +807,16 @@ func loadConfig() (*config, error) {
 			numNets++
 			activeNetParams = bitcoinRegTestNetParams
 		}
+		if cfg.Bitcoin.MyNet {
+			numNets++
+			activeNetParams = bitcoinMyNetParams
+		}
 		if cfg.Bitcoin.SimNet {
 			numNets++
 			activeNetParams = bitcoinSimNetParams
 		}
 		if numNets > 1 {
-			str := "%s: The mainnet, testnet, regtest, and " +
+			str := "%s: The mainnet, testnet, mynet, regtest, and " +
 				"simnet params can't be used together -- " +
 				"choose one of the four"
 			err := fmt.Errorf(str, funcName)
@@ -822,7 +827,7 @@ func loadConfig() (*config, error) {
 		// know how to initialize the daemon.
 		if numNets == 0 {
 			str := "%s: either --bitcoin.mainnet, or " +
-				"bitcoin.testnet, bitcoin.simnet, or bitcoin.regtest " +
+				"bitcoin.testnet, bitcoin.simnet, bitcoin.mynet, or bitcoin.regtest " +
 				"must be specified"
 			err := fmt.Errorf(str, funcName)
 			return nil, err
@@ -1392,6 +1397,8 @@ func extractBitcoindRPCParams(bitcoindConfigPath string) (string, string, string
 		chainDir = "/testnet4/"
 	case "regtest":
 		chainDir = "/regtest/"
+	case "mynet":
+		chainDir = "/mynet/"
 	}
 
 	cookie, err := ioutil.ReadFile(dataDir + chainDir + ".cookie")
