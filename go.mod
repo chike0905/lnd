@@ -64,4 +64,7 @@ replace github.com/lightningnetwork/lnd/cert => ./cert
 
 replace git.schwanenlied.me/yawning/bsaes.git => github.com/Yawning/bsaes v0.0.0-20180720073208-c0276d75487e
 
+// import forked btcd
+replace github.com/btcsuite/btcd v0.20.1-beta => github.com/chike0905/btcd v0.0.0-20200220091623-271ea8b410ea
+
 go 1.12
